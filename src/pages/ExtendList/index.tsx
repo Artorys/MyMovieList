@@ -163,6 +163,7 @@ export default function ExtendList(){
         getPopular()
         getRated()
       }
+
     },[])
 
 
@@ -372,6 +373,7 @@ export default function ExtendList(){
                           </>
                         )
                         }
+
                              { group ===  'search' && (
                           <>
                             <h1>Search</h1>

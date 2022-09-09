@@ -39,8 +39,15 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "vite",
     "build": "vite build"
+=======
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+>>>>>>> 5c454369e553c1b7e2d40fe8916dcdd7ca1546d0
   },
   "eslintConfig": {
     "extends": [
@@ -66,8 +73,12 @@
     "@types/react-lottie": "^1.2.6",
     "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26",
+<<<<<<< HEAD
     "@types/uuid": "^8.3.4",
     "@vitejs/plugin-react": "1.1.1", 
     "vite": "2.7.0"
+=======
+    "@types/uuid": "^8.3.4"
+>>>>>>> 5c454369e553c1b7e2d40fe8916dcdd7ca1546d0
   }
 }

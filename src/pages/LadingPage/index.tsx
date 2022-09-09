@@ -63,10 +63,17 @@ export default function LadingPage() {
             if(index == 1 || index == 3 || index == 4 || index == 7 || index == 8 || index == 10 || index == 13 || index == 14 || index == 16 || index == 18 || index == 19 || index == 17 || index == 0 )
             {
             return(
+<<<<<<< HEAD
               <div key={movie.id}>
                 {movie.backdrop_path && <SwiperSlide key={index} style={{backgroundRepeat : "no-repeat",backgroundPosition : "auto auto",backgroundSize : "100% 100%",backgroundImage :`url(${base_ImageUrl}${movie.backdrop_path})`}}>
                 </SwiperSlide>} 
               </div>
+=======
+              <>
+                {movie.backdrop_path && <SwiperSlide style={{backgroundRepeat : "no-repeat",backgroundPosition : "auto auto",backgroundSize : "100% 100%",backgroundImage :`url(${base_ImageUrl}${movie.backdrop_path})`}} key={movie.id}>
+                </SwiperSlide>} 
+              </>
+>>>>>>> 5c454369e553c1b7e2d40fe8916dcdd7ca1546d0
               )
             }
           })}
