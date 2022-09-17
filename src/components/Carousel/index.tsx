@@ -11,6 +11,7 @@ import {Navigation,EffectCoverflow,Autoplay,Pagination} from "swiper"
 import img from "../../assets/images/movies-removebg-preview.png"
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
 function SimpleSlider()
 {
     const {coming,setComing,setComingPerPage,comingPerPage} = useContext(ComingSoonContext)
@@ -51,9 +52,14 @@ function SimpleSlider()
           {
             return (
             <SwiperSlide style={{backgroundImage : `url(${base_ImageUrl}${movie.backdrop_path})`}} key={movie.id}>
-              <SpanEdited>{movie.original_title}</SpanEdited>
-              <img className="coming" src={`${img}`} alt='coming soon'></img>
-              <p className="date">{movie.release_date}</p>
+                <SpanEdited>
+                  <h2>
+                    {movie.original_title}
+                  </h2>
+                  <p className="date">{movie.release_date}</p>
+
+                </SpanEdited>
+                <img className="coming" src={`${img}`} alt='coming soon'></img>
             </SwiperSlide>
             )
           })}

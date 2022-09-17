@@ -1,5 +1,5 @@
 import { HeaderDiv, theme } from "./style";
-import {useContext, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import MovieIcon from '@mui/icons-material/Movie';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {Box,ThemeProvider,Modal,Toolbar,Grid,MenuList, Divider,Typography,IconButton,Button,Tooltip,Menu,MenuItem, useMediaQuery, SwipeableDrawer, Input, InputAdornment, InputLabel} from "@mui/material"
 import { GenresOfMoviesContext } from "../../context/GenresOfMoviesContext";
-import { SearchMovies } from "../../services/apiTMDB";
+import { GetGenresOfMovies, SearchMovies } from "../../services/apiTMDB";
 import { SearchContext } from "../../context/SearchContext";
 import { stremerContext } from "../../context/stremerPlataform";
 export default function Header (){
@@ -20,6 +20,18 @@ export default function Header (){
         const toNavigate = `/extend/${group}`
             navigate(toNavigate, { replace: true });
     }
+    useEffect(()=>
+    {
+        async function getGenres()
+        {
+            const movie = await GetGenresOfMovies()
+            setGenresOfMovies((oldresults)=> 
+            {
+                return movie
+            })
+        }
+        getGenres()
+    },[])
     const navigate = useNavigate()
     const [elOrigin,setElOrigin] = useState<HTMLElement | null>(null)
     const open = Boolean(elOrigin)
@@ -29,8 +41,7 @@ export default function Header (){
     const {genresOfMovies,setGenresOfMovies} = useContext(GenresOfMoviesContext)
     const { setPlataforma,setFilmes  } = useContext(stremerContext)
     const menuResponsive = useMediaQuery(theme.breakpoints.down("sm"))
-    const [input,setInput] = useState<string>("")
-    const {search,setSearch} = useContext(SearchContext)
+    const {search,setSearch,input,setInput,searchPerPage,setSearchPerPage} = useContext(SearchContext)
     return (
         <ThemeProvider theme = {theme}>
             <>
@@ -190,16 +201,11 @@ export default function Header (){
                                         {
                                             setCount("Your search not exists") 
                                         }
-                                        else
-                                        {
-                                            setSearch(oldValue => [...oldValue,searchInput])
-                                            navigateToExpand("search")
-                                        }
                                     }catch(err)
                                     {
                                         setCount("Your search not exists")
                                     }
-                                }}
+                                }} 
                                 variant="outlined">
                                     <Typography fontSize = "0.7rem" color = "secondary">Search</Typography>
                                 </Button>
@@ -212,7 +218,27 @@ export default function Header (){
                            {typeof count == "number" && count && <Typography sx = {{display  :"flex",gap :"4px"}} color = {theme.palette.grey[400]} fontWeight={400}>You have {count} results</Typography>} 
                            {typeof count == "string" && count && <Typography sx = {{display  :"flex",gap :"4px"}} color = {theme.palette.grey[400]} fontWeight={400}>{count}</Typography>}
                            {typeof count == "string" && !count && <Typography sx = {{display  :"flex",gap :"4px"}} color = {theme.palette.grey[400]} fontWeight={400}>Search something...</Typography>}
-                            <Button sx = {{position : "absolute", bottom : 0, right : 0}}>Show</Button>
+                            <Button onClick={async(eve)=>
+                                {
+                                    try
+                                    {
+                                        const searchInput = await SearchMovies(input)
+                                        const {total_pages,total_results,page,results} = searchInput
+                                        setCount(total_results)
+                                        if(results?.length == 0)
+                                        {
+                                            setCount("Your search not exists") 
+                                        }
+                                        else
+                                        {
+                                            setSearch(oldValue => [...oldValue,searchInput])
+                                            navigateToExpand(`search/${input}`)
+                                        }
+                                    }catch(err)
+                                    {
+                                        setCount("Your search not exists")
+                                    }
+                                }} sx = {{position : "absolute", bottom : 0, right : 0}}>Show</Button>
                         </Box>
                     <hr style ={{width : "100%"}}></hr>
                     <Box display = "flex" justifyContent={"start"} gap = "5px" mt = "0.5rem" width = "auto" height = "auto">
@@ -223,7 +249,10 @@ export default function Header (){
                     height = {100}>
                         {genresOfMovies.map((genre)=>
                         {
-                            return (<Grid key = {genre.id} item xs = {1} display={"flex"} justifyContent = "center">
+                            return (<Grid onClick = {(eve)=>
+                            {
+                                navigateToExpand((genre.name).replace(/\s/g, ""))
+                            }} key = {genre.id} item xs = {1} display={"flex"} justifyContent = "center">
                                         <Button sx = {{width : "120px",height: "50px"}} variant = "contained" color = "secondary"><Typography variant = "body2">{genre.name}</Typography></Button>
                                    </Grid>) 
                         })}

@@ -1,5 +1,6 @@
 import {keyframes} from "styled-components";
 import styled from "styled-components"
+import { theme } from "../CardItem/style";
 interface ISpanProps
 {
   children : string
@@ -63,19 +64,6 @@ height: auto;
             height: 100px;
           }
         }
-        .date
-        {
-          color: #fff;
-          text-shadow: 2px 2px black;
-          padding: 1rem;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto auto;
-          width: auto;
-          height: auto;
-        }
   img
   {
     width: 100%;
@@ -83,21 +71,37 @@ height: auto;
   }
 
 `
-export const SpanEdited = styled.span`
+export const SpanEdited = styled.div`
   position: absolute;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  height: auto;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: ${theme.palette.grey[900]};
   left: 50%;
-  bottom : 50px;
+  bottom : 0px;
   transform: translate(-50%, -0%);
-  display: block;
-  color: #D9D9D9;
-  text-shadow: 2px 2px black;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0px;
   cursor: pointer;
-  @media screen  and (min-width : 600px){
-    font-size: 2rem;
-    letter-spacing: 5px
-
+  h2
+  {
+    color: #D9D9D9;
+    text-shadow: 2px 2px black;
+    font-size: 1rem;
+    font-weight: 800;
+    @media screen  and (min-width : 600px){
+      font-size: 2rem;
+  
+  
+    }
   }
+  .date
+  {
+    color: #fff;
+    text-shadow: 2px 2px black;
+    width: auto;
+    height: auto;
+  }
+
 `

@@ -4,8 +4,8 @@ import { FieldValue } from "react-hook-form";
 export interface IContextValues {
   login: (data: FieldValue<ILoginData>) => void;
   registerUser: (data: FieldValue<ILoginData>) => void;
-  movie_id: number;
-  setMovie_Id: Dispatch<SetStateAction<number>>;
+  movie_id: string | undefined;
+  setMovie_Id: Dispatch<SetStateAction<string | undefined>>;
 }
 
 export interface IContext {

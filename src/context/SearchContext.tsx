@@ -8,6 +8,8 @@ interface ISearchContext
     setSearch : Dispatch<SetStateAction<Array<ISearchResponse>>>;
     searchPerPage : number;
     setSearchPerPage : Dispatch<SetStateAction<number>>
+    input : string;
+    setInput : Dispatch<SetStateAction<string>>
 
 }
 interface ISearchProps
@@ -20,8 +22,9 @@ function SearchProvider({children} : ISearchProps) : ReactElement
 {
     const [search,setSearch] = useState<Array<ISearchResponse>>([])
     const [searchPerPage,setSearchPerPage] = useState<number>(1)
+    const [input,setInput] = useState<string>("")
     return(
-        <SearchContext.Provider value={{search,setSearch,searchPerPage,setSearchPerPage,}}>{children}</SearchContext.Provider>
+        <SearchContext.Provider value={{setInput,input,search,setSearch,searchPerPage,setSearchPerPage,}}>{children}</SearchContext.Provider>
     )
 }
 export {SearchProvider,SearchContext}

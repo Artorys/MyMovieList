@@ -13,11 +13,11 @@ export interface IMovieContext {
   movie: IResponseDetailMovie;
   movieSimilar: IReponseSimilarMovie;
   movieCredits: IReponseCredits;
-  setMovie_Id: Dispatch<SetStateAction<number>>;
+  setMovie_Id: Dispatch<SetStateAction<string | undefined>>;
   handleSubmit: (evt: React.FormEvent<HTMLFormElement>, data: string) => void;
   handleSubmitRating: (data: number) => void;
   postLive: Array<IDataComenter>;
-  movie_id: number;
+  movie_id: string | undefined;
   loadingMovie: boolean;
   ratingValue: number;
   setRatingValue: Dispatch<SetStateAction<number>>;
@@ -27,7 +27,7 @@ export interface IMovieContext {
 
 export interface IDataComenter {
   id?: number;
-  id_Movie: number;
+  id_Movie: string | undefined;
   userId: number;
   comments: string;
   avatar?: string;
@@ -36,7 +36,7 @@ export interface IDataComenter {
 
 export interface IDataRating {
   id?: number;
-  id_Movie: number;
+  id_Movie: string | undefined;
   userId: number;
   rating: number;
   avatar?: string;
@@ -45,7 +45,7 @@ export interface IDataRating {
 
 export interface IDataRatingAll {
     id?: number;
-    id_Movie: number;
+    id_Movie: string | undefined;
     userId: number;
     rating: number;
     avatar?: string;

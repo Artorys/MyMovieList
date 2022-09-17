@@ -9,11 +9,12 @@ export interface IPlayContext
 }
 export interface IPlay
 {
-    id : string | number
+    id : string | undefined;
     play : boolean
     url : string
+    image : string;
 }
-export async function getVideo(id : number)
+export async function getVideo(id : string | undefined)
 {
 
     const videoKey = await apiTMDb.get<IVideos>(`/movie/${id}/videos`)

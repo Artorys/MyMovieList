@@ -18,6 +18,7 @@ import {
 } from "../interfaces/moviePage/moviePageInterface";
 import { AuthContext } from "./authContext";
 import { getVideo } from "./playContext";
+import { useParams } from "react-router-dom";
 
 export const MovieContext = createContext<IMovieContext>({} as IMovieContext);
 
@@ -51,8 +52,10 @@ export function MovieContextProvider({ children }: IMovieContextProps) {
   const name = localStorage.getItem("@nameUser") as string
   const [cont, setCont] = useState(0)
   const [director, setDirector] = useState<IDirector[]>([] as IDirector[])
+  const {id} = useParams()
 
   useEffect(() => {
+    setMovie_Id(id)
     setCont(0)
     filterDirector([])
     

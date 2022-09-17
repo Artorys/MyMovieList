@@ -10,49 +10,49 @@ export const MainDiv = styled.div`
     background-color: #0D0D0F;
     display: flex;
     justify-content: center;
+    align-items: center;
 
 `
 
 export const ContentDiv = styled.div`
     overflow: hidden;
     display: flex;
-    min-height: max-content;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
     width: 73%;
     min-width: 320px;
-    height: 100%;
+    height: auto;
 
 
 `
 
 
 export const TitleDiv = styled.div`
-    margin-top: 150px;
-    width: 100%;
-    height: 150px;
+    margin: 60px 0;
+    width: auto;
+    height: auto;
     display: flex;
+    gap: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     h1{
+        text-align: center;
         font-family: inter;
-        font-size: 70px;
+        font-size: 2rem;
         color: #F5C600;
     }
 
     h3{
-        font-size: 35px;
+        font-size: 1rem;
         color: white;
     }
 
 `
 
 export const MoviesDiv = styled.div`
-    margin-top: 150px;
     width: 100%;
+    height: 100%;
     gap: 1rem;
     justify-content: center;
     display: flex;

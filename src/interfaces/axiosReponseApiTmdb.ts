@@ -1,5 +1,22 @@
 import { number } from "yup";
 import { string } from "yup/lib/locale";
+export interface IImage
+{
+  aspect_ratio : number;
+  file_path : string;
+  height : number;
+  iso_639_1 : null | string;
+  vote_average : number;
+  vote_count : number;
+  width : number;
+}
+export interface IImageRes
+{
+  id : number;
+  backdrops : Array<IImage>;
+  posters  : Array<IImage>;
+  logos : Array<IImage>
+}
 export interface ITrending
 {
   img : string
@@ -31,7 +48,7 @@ interface ISearch
   adult: boolean;
   backdrop_path: string;
   genre_ids: [number];
-  id: number;
+  id: string | undefined;
   original_language: string;
   original_title: string;
   overview: string;
@@ -58,7 +75,7 @@ export interface IResultsGenre
   adult: boolean;
   backdrop_path: string;
   genre_ids: [number];
-  id: number;
+  id: string | undefined;
   original_language: string;
   original_title: string;
   overview: string;
@@ -128,13 +145,20 @@ export interface IComing
     vote_average: number;
     vote_count: number
 }
+export interface IComingRes
+{
+  page: number;
+  results: Array<IComing>;
+  total_pages: number;
+  total_results: number;
+}
 export interface IResults
 {
     img : string
     adult: boolean;
     backdrop_path: string;
     genre_ids: [number];
-    id: number;
+    id: string | undefined;
     original_language: string;
     original_title: string;
     overview: string;
@@ -345,7 +369,7 @@ export interface IReponseSimilarMovie{
     adult: boolean;
     backdrop_path: string;
     genre_ids: [number];
-    id: number;
+    id: string | undefined;
     original_language: string;
     original_title: string;
     overview: string;
@@ -371,7 +395,7 @@ export interface IReponsePlataformStremer{
       adult: boolean;
       backdrop_path: string;
       genre_ids: [number];
-      id: number;
+      id: string | undefined;
       original_language: string;
       original_title: string;
       overview: string;

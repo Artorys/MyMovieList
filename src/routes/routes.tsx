@@ -15,7 +15,7 @@ import { TrendingContext, TrendingProvider } from "../context/TrendingContext";
 export default function RoutesMain() {
   return (
     <Routes>
-      <Route path="/Movie" element={
+      <Route path="/Movie/:id" element={
       <MovieContextProvider>
           <MoviePage />
       </MovieContextProvider>
@@ -28,6 +28,7 @@ export default function RoutesMain() {
         <Route path="/UserProfile" element={<UserProfile />} />
       </Route>
       <Route path="/extend/:group" element={<ExtendList />} />
+      <Route path="/extend/search/:group" element={<ExtendList />} />
       <Route path="*" element={<Navigate to="/" replace={true} />} />
     </Routes>
   );

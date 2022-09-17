@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { MovieContext } from "../../context/moviePageContext";
 import { base_ImageUrl } from "../../services/api";
@@ -17,23 +17,9 @@ import ReactPlayer from 'react-player/youtube'
 
 
 export function MoviePage() {
-  useEffect(()=>
-  {
-    window.addEventListener("unload",()=>
-        {
-          window.location.href = "/home"
-        })
-  },[])
-  const navigate = useNavigate();
-
-  if (
-    localStorage.getItem("@token") === undefined ||
-    localStorage.getItem("@token") == null
-  ) {
-    navigate("/", { replace: true });
-  }
-
+  
   const {
+    setMovie_Id,
     movie,
     handleSubmit,
     handleSubmitRating,
@@ -47,6 +33,22 @@ export function MoviePage() {
     video,
     director
   } = useContext(MovieContext);
+  
+  const {id} = useParams()
+  const navigate = useNavigate();
+  
+  useEffect(()=>
+  {
+    setMovie_Id(id)
+    console.log(movie_id)
+  },[id])
+  if (
+    localStorage.getItem("@token") === undefined ||
+    localStorage.getItem("@token") == null
+  ) {
+    navigate("/", { replace: true });
+  }
+
 
   const [input, setInput] = useState("");
   const [pageMax, setPageMax] = useState(10);
@@ -164,11 +166,16 @@ export function MoviePage() {
                   
                   <div className='genresContainer'>
                     {movie.data.genres.map((elem) => {
-                      return <div                                
+                      return <div
+                      onClick={()=>
+                        {
+                          navigate(`/extend/${elem.name}`)
+                        }}                                
                                 key={elem.id}                                
                                 className='genreCard'
                               >
                                 {elem.name}
+                                
                               </div>;
                     })}
                   </div>
@@ -176,7 +183,7 @@ export function MoviePage() {
                 </div>
 
                 <div className='subContainerRight'>
-                  <h4>Streaming platforms</h4>
+                  <h4>Companies</h4>
 
                   <div className='platformsContainer'> 
                     {movie.data.production_companies.map((elem) => {
@@ -202,7 +209,7 @@ export function MoviePage() {
                 {
                   postLive.map((elem, i) => {
                       return(
-                        elem.id_Movie === movie_id &&
+                        elem.id_Movie == movie_id &&
                           i >= postLive.length - pageMax &&
                           <div key={elem.id} className='commentCard'>
                             <div className='userInfo'>
@@ -248,11 +255,11 @@ export function MoviePage() {
                 return <CardItem key={elem.id} movies={elem}></CardItem>;
               })}
             </div>
+          <Footer />  
           </MainContainer>   
         </MoviePageContainer>
       ): (<Skeleton></Skeleton>)}
 
-      <Footer />
     </>
   );
 }

@@ -67,7 +67,7 @@
     "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react": "1.1.1", 
+    "@vitejs/plugin-react": "1.1.1",
     "vite": "2.7.0"
   }
 }

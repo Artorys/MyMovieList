@@ -60,15 +60,12 @@ export default function LadingPage() {
 
           {trending?.results?.map((movie,index)=>       
           {
-            if(index == 1 || index == 3 || index == 4 || index == 7 || index == 8 || index == 10 || index == 13 || index == 14 || index == 16 || index == 18 || index == 19 || index == 17 || index == 0 )
-            {
             return(
               <div key={movie.id}>
                 {movie.backdrop_path && <SwiperSlide key={index} style={{backgroundRepeat : "no-repeat",backgroundPosition : "auto auto",backgroundSize : "100% 100%",backgroundImage :`url(${base_ImageUrl}${movie.backdrop_path})`}}>
                 </SwiperSlide>} 
               </div>
               )
-            }
           })}
     <ThemeProvider theme={theme}>
             <DivLanding>

@@ -1,20 +1,22 @@
-import { useContext, useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect,useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import  CardItem  from "../../components/CardItem";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { popularMovieContext } from "../../context/popularMovieContext";
 import { RatedContext } from "../../context/ratedContext";
 import {ComingSoonContext} from "../../context/comingSoonContext";
-import { GetComingSoonMovies, GetPopularMovies, GetRatedMovie } from "../../services/apiTMDB";
+import { GetComingSoonMovies, GetPopularMovies, GetRatedMovie, SearchMovies } from "../../services/apiTMDB";
 import { ContentDiv, MainDiv, MoviesDiv, TitleDiv } from "./style";
 import { stremerContext } from "../../context/stremerPlataform";
 import { apiTMDb } from "../../services/api";
 import { IReponsePlataformStremer } from "../../interfaces/axiosReponseApiTmdb";
 import { genresContext } from "../../context/GenresContext";
-import {Button, ThemeProvider} from "@mui/material"
+import {Button, Skeleton, ThemeProvider,Box} from "@mui/material"
 import { theme } from "../LadingPage";
 import { SearchContext } from "../../context/SearchContext";
+import { InView } from "react-intersection-observer";
+import { LoadingCardContext } from "../../context/LoadCardContext";
 
 
 
@@ -23,12 +25,14 @@ import { SearchContext } from "../../context/SearchContext";
 export default function ExtendList(){
     const navigate = useNavigate()
     const { group } = useParams();
+    const {pathname} = useLocation()
     const {popularPerPage,SetPopularPerPage,popularMovies,setPopularMovies} = useContext(popularMovieContext)
     const {ratedPages,ratedPerPage,setRatedPages,setRatedPerPage} = useContext(RatedContext)
     const {coming} = useContext(ComingSoonContext)
     const { filmes, setPage } = useContext(stremerContext)
-    const { filmesGenres, setPageGenres,setGenres, genres, setFilmesGenres } = useContext(genresContext)
-    const {search,setSearch} = useContext(SearchContext)
+    const { filmesGenres, setPageGenres,setGenres, genres, setFilmesGenres,pageGenres} = useContext(genresContext)
+    const {setLoading,loading} = useContext(LoadingCardContext)
+    const {search,setSearch,input,setInput,searchPerPage,setSearchPerPage} = useContext(SearchContext)
 
    
     useEffect(()=>
@@ -96,11 +100,11 @@ export default function ExtendList(){
           setGenres(10749)
           break;
 
-          case "Science Fiction" :
+          case "ScienceFiction" :
        
           setGenres(878)
               break;
-          case "TV Movie" :
+          case "TVMovie" :
        
           setGenres(10770)
               break;
@@ -112,7 +116,6 @@ export default function ExtendList(){
           setGenres(10752)
               break;
           case "Western" :
-       
           setGenres(37)
               break;
       }
@@ -160,11 +163,42 @@ export default function ExtendList(){
               }
             })
         }
+        async function getSearch()
+        {
+          const movie = await SearchMovies(group,searchPerPage)
+            setSearch((oldresults)=> 
+            {
+              if(oldresults.length > 0)
+              {
+                const newResult = oldresults.filter((results)=>
+                {
+                  if(results.page != movie.page)
+                  {
+                    return results
+                  }
+                })
+                return newResult.concat(movie)
+              }
+              else
+              {
+                return oldresults.concat(movie)
+              }
+            })
+        }
+        getSearch()
         getPopular()
         getRated()
       }
-
-    },[])
+    },[popularPerPage,genres,ratedPerPage,searchPerPage,group])
+    useEffect(()=>
+    {
+      setFilmesGenres([])
+      setSearch([])
+      setTimeout(()=>
+      {
+        setLoading(false)
+      },3000)
+    },[group])
 
 
     
@@ -324,7 +358,7 @@ export default function ExtendList(){
                           </>
                         )
                         }
-                        { group ===  'Mistery' && (
+                        { group ===  'Mystery' && (
                           <>
                             <h1>Mistery</h1>
                             <h3>Mistery Movies</h3>
@@ -345,14 +379,14 @@ export default function ExtendList(){
                           </>
                         )
                         }
-                        { group ===  'Thiriller' && (
+                        { group ===  'Thriller' && (
                           <>
                             <h1>Thiriller</h1>
                             <h3>Thiriller Movies</h3>
                           </>
                         )
                         }
-                        { group ===  'TvMovie' && (
+                        { group ===  'TVMovie' && (
                           <>
                             <h1>Tv Movie</h1>
                             <h3>Tv Movie Films</h3>
@@ -374,10 +408,10 @@ export default function ExtendList(){
                         )
                         }
 
-                             { group ===  'search' && (
+                             { pathname ===  `/extend/search/${group}` && (
                           <>
                             <h1>Search</h1>
-                            <h3>You Search</h3>
+                            <h3>Results for {group}</h3>
                           </>
                         )
                         }
@@ -400,7 +434,7 @@ export default function ExtendList(){
                       </MoviesDiv>
                         )
                         }
-                         { group ===  'search' && (
+                         { pathname ===  `/extend/search/${group}` && (
                       <MoviesDiv>
                       {search?.map(({results})=>
                                   {
@@ -727,7 +761,7 @@ export default function ExtendList(){
                         
                         </MoviesDiv>
                       )}
-                        { group == 'Mistery' && (
+                        { group == 'Mystery' && (
                         
                         <MoviesDiv>
                                                     
@@ -771,6 +805,7 @@ export default function ExtendList(){
                             
                             filmesGenres.map((results)=>
                             {
+                              console.log("salve")
                                
                               return(
                                       <CardItem key={results.id} movies={results}></CardItem>
@@ -781,7 +816,7 @@ export default function ExtendList(){
                         
                         </MoviesDiv>
                       )}
-                        { group == 'Thiriller' && (
+                        { group == 'Thriller' && (
                         
                         <MoviesDiv>
                                                     
@@ -801,7 +836,7 @@ export default function ExtendList(){
                         
                       )}
                       
-                        { group == 'TvMovie' && (
+                        { group == 'TVMovie' && (
                         
                         <MoviesDiv>
                                                     
@@ -857,11 +892,22 @@ export default function ExtendList(){
                         </MoviesDiv>
                       )}
                <ThemeProvider theme={theme}>
-                <Button sx = {{margin : "2rem"}} color = "secondary" variant="contained" className="more" onClick={() => {
-                      setPage(odlnumber => odlnumber + 1)
-                      setPageGenres(odlnumber => odlnumber + 1)
-                      SetPopularPerPage(odlnumber => odlnumber + 1)
-                      }}>more</Button>
+                <InView skip = {loading} onChange={(inView,entry) => {
+                      if(inView)
+                      {
+                        setPage(odlnumber => odlnumber + 1)
+                        setPageGenres(odlnumber => odlnumber + 1)
+                        SetPopularPerPage(odlnumber => odlnumber + 1)
+                        setRatedPerPage((oldValue)=> oldValue + 1)
+                        setSearchPerPage((oldValue)=> oldValue + 1)
+                      }
+                      }}>
+                        <Box margin = "1rem 0 " display = "flex" flexWrap={"wrap"} justifyContent={"center"} gap = "1rem">
+                          <Skeleton sx = {{backgroundColor : theme.palette.grey[900]}} variant="rectangular" width={300} height = {300}></Skeleton>
+                          <Skeleton sx = {{backgroundColor : theme.palette.grey[900]}} variant="rectangular" width={300} height = {300}></Skeleton>
+                        </Box>
+                      </InView>
+
                </ThemeProvider>
                      
                   

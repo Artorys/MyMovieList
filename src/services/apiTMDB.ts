@@ -1,5 +1,5 @@
 import {apiTMDb} from "./api"
-import {IGenres, IGenresRes, IOnlyGenre, IRated, IResponsePopularMovie, ISearchResponse,ITrendingRes} from "../interfaces/axiosReponseApiTmdb"
+import {IComing, IComingRes, IGenres, IGenresRes, IImageRes, IOnlyGenre, IRated, IResponsePopularMovie, ISearchResponse,ITrendingRes} from "../interfaces/axiosReponseApiTmdb"
 import { useContext } from "react"
 async function GetPopularMovies(page : number)
 {
@@ -21,7 +21,7 @@ async function GetPopularMovies(page : number)
 
 async  function GetComingSoonMovies(page : number)
 {
-    const comingSoonMovies = await apiTMDb.get<IResponsePopularMovie>("/movie/upcoming",
+    const comingSoonMovies = await apiTMDb.get<IComingRes>("/movie/upcoming",
     {
         params : 
         {
@@ -252,13 +252,14 @@ async function GetOnlyGenres(name : string,count : number)
             return Western
     }
 }
-async function SearchMovies(input : string)
+async function SearchMovies(input : string | undefined,page? : number)
 {   
     const search = await apiTMDb.get<ISearchResponse>("/search/movie",
     {
         params : 
         {
-            query : input
+            query : input,
+            page : page
         }
     })
     return search.data
@@ -272,7 +273,23 @@ async function TrendingMovies()
             watch_region : "BR"
         }
     })
-    console.log(trending.data.results)
     return trending.data
 }
-export {TrendingMovies,SearchMovies,GetPopularMovies,GetComingSoonMovies,GetRatedMovie,GetGenresOfMovies,GetOnlyGenres}
+async function Images(id : string | undefined)
+{   
+    const trending = await apiTMDb.get<IImageRes>(`/movie/${id}/images`)
+    if(trending.data?.backdrops.length >= 1)
+    {
+        return trending.data.backdrops[0].file_path
+    }
+    if(trending.data?.posters.length >= 1)
+    {
+        return trending.data.posters[0].file_path
+    }
+    if(trending.data?.logos.length >= 1)
+    {
+        return trending.data.logos[0].file_path
+    }
+
+}
+export {Images,TrendingMovies,SearchMovies,GetPopularMovies,GetComingSoonMovies,GetRatedMovie,GetGenresOfMovies,GetOnlyGenres}

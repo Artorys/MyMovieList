@@ -24,7 +24,6 @@ export function GenresComponent({ children }: IGenresContext) {
 
   useEffect(() => {
     
-
     apiTMDb
       .get(
         `https://api.themoviedb.org/3/discover/movie?api_key=5c3399653ec5331dea8245d00cfda8d4&with_genres=${genres}&watch_region=BR`,

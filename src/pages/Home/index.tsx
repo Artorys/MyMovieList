@@ -92,17 +92,8 @@ export default function Home(){
               }
             })
         }
-        async function getGenres()
-        {
-            const movie = await GetGenresOfMovies()
-            setGenresOfMovies((oldresults)=> 
-            {
-                return movie
-            })
-        }
         getPopular()
         getRated()
-        getGenres()
     },[])
 
 
