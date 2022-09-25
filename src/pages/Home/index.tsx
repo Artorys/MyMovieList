@@ -35,7 +35,7 @@ import { genresContext } from "../../context/GenresContext";
 
 
 
-
+/* salve */
 export default function Home(){
 
     const navigate = useNavigate();
