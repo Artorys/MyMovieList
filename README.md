@@ -4,9 +4,16 @@ Feito para descobrir novos filmes,filtrando por plataformas de streaming,gênero
 
 ## 🚀 Começando
 
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+crie uma pasta e clone o repositório.
 
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
+No diretório do projeto, você pode executar:
+yarn start
+
+Executa o aplicativo no modo de desenvolvimento.
+Abra http://localhost:3000 para visualizá-lo em seu navegador.
+
+A página será recarregada quando você fizer alterações.
+Você também pode ver erros de lint no console. 
 
 ### 📋 Pré-requisitos
 
