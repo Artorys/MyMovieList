@@ -1,3 +1,4 @@
+https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 # MyMovieList
 
 Feito para descobrir novos filmes,filtrando por plataformas de streaming,gêneros e pesquisa de filmes.avaliações do usuário e comentários também são possíveis,utlizando-se uma api para o consumo dos filmes e uma fake api para o gerenciamento da parte de usuário.
