@@ -6,10 +6,20 @@ Feito para descobrir novos filmes,filtrando por plataformas de streaming,gênero
 
 crie uma pasta e clone o repositório.
 
-No diretório do projeto, você pode executar:
-yarn start
+No diretório do projeto,crie um terminal e execute:
 
-Executa o aplicativo no modo de desenvolvimento.
+```
+yarn
+```
+Isso irá instalar as dependências necessárias para a execução do projeto. 
+
+Após instalar as dependências, execute o build do projeto:
+
+```
+yarn start
+```
+
+Executa o aplicativo no modo de desenvolvimento em conjunto do vite.
 Abra http://localhost:3000 para visualizá-lo em seu navegador.
 
 A página será recarregada quando você fizer alterações.
