@@ -27,65 +27,21 @@ Você também pode ver erros de lint no console.
 
 ### 📋 Pré-requisitos
 
-De que coisas você precisa para instalar o software e como instalá-lo?
-
-```
-Dar exemplos
-```
-
-### 🔧 Instalação
-
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
-
-Diga como essa etapa será:
-
-```
-Dar exemplos
-```
-
-E repita:
-
-```
-Até finalizar
-```
-
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
-
-## ⚙️ Executando os testes
-
-Explicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-### ⌨️ E testes de estilo de codificação
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-## 📦 Implantação
-
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+Ambiente de desenvolvimento(IDE) - Visual Studio Code
 
 ## 🛠️ Construído com
 
-Mencione as ferramentas que você usou para criar seu projeto
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
-
-## 🖇️ Colaborando
-
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
+  * axios : Utilizado para trabalhar com requisições e respostas http.
+  * styled-components : Utilizado para estilização de componentes react.
+  * MUI : Utilizado para agilizar na criação de componentes,ja que esta biblioteca possui muitos componentes pré-         fabricados.
+  * createContext e useContext : Para englobar uma página ou componente especíﬁco e poder o usar o contexto criado.
+  * react-hook-form e yup : Para registrar informações de formulários e suas validações,respectivamente.
+  * react-router-dom : Para administrar as rotas em sua aplição.
+  * react-player : Gerenciar os trailers e videos em sua aplicação.
+  * useState : feito para gerenciar seu estados de maneira declarativa e performática.
+  * swiper : Agilizar na criação e utilização de um carrosel de imagens com diversas configurações.
+  * react-intersection-observer : Utilizado para criar o scroll infito de filmes.
+  *  JSON-SERVER : Feito para criar uma api fake,hospedada na heroku,com rotas de fácil acesso para login e registro.
 
 ## 📌 Versão
 
@@ -99,18 +55,3 @@ Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
 * **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
 
 Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
-
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
-
-## 🎁 Expressões de gratidão
-
-* Conte a outras pessoas sobre este projeto 📢;
-* Convide alguém da equipe para uma cerveja 🍺;
-* Um agradecimento publicamente 🫂;
-* etc.
-
-
----
-⌨️ com ❤️ por [Armstrong Lohãns](https://gist.github.com/lohhans) 😊
