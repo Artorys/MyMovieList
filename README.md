@@ -1,5 +1,5 @@
 <div style = "display : flex">
- <img src = "https://badgen.net/projeto/Desenvolvimento/?icon=github">
+ <img src = "https://badgen.net/badge/projeto em Desenvolvimento/?icon=github">
  <img src = "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
  <img src = "https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white">
