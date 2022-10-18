@@ -6,6 +6,7 @@ export const apiTMDb = axios.create({
 export const apiFake = axios.create({
     baseURL: 'https://imovielist.herokuapp.com'
 })
+
 apiTMDb.defaults.params = 
 {
     api_key : "5c3399653ec5331dea8245d00cfda8d4"
