@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+<div style = "display : flex;align-items : center">
+ <img src = "https://badgen.net/badge/MyMovieList/projeto em desenvolvimento/black">
+ <img src = "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+ <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+ <img src = "https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white">
+ <img src = "https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# MyMovieList
 
-In the project directory, you can run:
+Deploy : https://mymovielist-artorys.vercel.app/
+ 
+Feito para descobrir novos filmes,filtrando por plataformas de streaming,gêneros e pesquisa de filmes.avaliações do usuário e comentários também são possíveis,utlizando-se uma api para o consumo dos filmes e uma fake api para o gerenciamento da parte de usuário.
 
-### `yarn start`
+## 🚀 Começando
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+crie uma pasta e clone o repositório.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+No diretório do projeto,crie um terminal e execute:
 
-### `yarn test`
+```
+yarn
+```
+Isso irá instalar as dependências necessárias para a execução do projeto. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Após instalar as dependências, execute o build do projeto:
 
-### `yarn build`
+```
+yarn start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Executa o aplicativo no modo de desenvolvimento em conjunto do vite.
+Abra http://localhost:3000 para visualizá-lo em seu navegador.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A página será recarregada quando você fizer alterações.
+Você também pode ver erros de lint no console. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📋 Pré-requisitos
 
-### `yarn eject`
+Ambiente de desenvolvimento(IDE) - Visual Studio Code
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🛠️ Construído com
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  * axios : Utilizado para trabalhar com requisições e respostas http.
+  * styled-components : Utilizado para estilização de componentes react.
+  * MUI : Utilizado para agilizar na criação de componentes,ja que esta biblioteca possui muitos componentes pré-         fabricados.
+  * createContext e useContext : Para englobar uma página ou componente especíﬁco e poder o usar o contexto criado.
+  * react-hook-form e yup : Para registrar informações de formulários e suas validações,respectivamente.
+  * react-router-dom : Para administrar as rotas em sua aplição.
+  * react-player : Gerenciar os trailers e videos em sua aplicação.
+  * useState : feito para gerenciar seu estados de maneira declarativa e performática.
+  * swiper : Agilizar na criação e utilização de um carrosel de imagens com diversas configurações.
+  * react-intersection-observer : Utilizado para criar o scroll infito de filmes.
+  *  JSON-SERVER : Feito para criar uma api fake,hospedada na heroku,com rotas de fácil acesso para login e registro.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📌 Versão
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Em desenvolvimento.... 
